@@ -4,6 +4,10 @@ import (
 	"fmt"
 	"log"
 	"to-do/config"
+	"to-do/controllers"
+	"to-do/repository"
+	"to-do/routes"
+	"to-do/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,14 +21,24 @@ func main() {
 	// 2. DB ga ulan
 	config.ConnectDB()
 
-	// 3. Gin router
+	// 3. Repository
+	userRepo := repository.NewUserRepository(config.DB)
+
+	// 4. Service
+	userService := services.NewUserService(userRepo)
+
+	// 5. Controller
+	userController := controllers.NewUserController(userService)
+
+	// 6. Gin router
 	r := gin.Default()
+	// proxyga ishonma
+	r.SetTrustedProxies(nil)
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "pong"})
-	})
+	// 7. Routelarni ulash
+	routes.SetupRoutes(r, userController)
 
-	// 4. Serverni ishga tushur
+	// 8. Serverni ishga tushur
 	port := config.AppConfig.ServerPort
 	log.Printf("🚀 Server %s portda ishga tushdi", port)
 
