@@ -1,0 +1,17 @@
+
+services:
+  postgres:
+    image: postgres:15-alpine # Yengil va tezkor versiya
+    container_name: todo_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: golang_todo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Baza o'chib ketsa ham ma'lumotlar saqlanib qolishi uchun
+    restart: unless-stopped
+
+volumes:
+  pgdata:
