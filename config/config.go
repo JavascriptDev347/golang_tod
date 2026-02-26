@@ -27,12 +27,12 @@ func LoadConfig() {
 	}
 
 	AppConfig = &Config{
-		DBHost:     getEnv("DB_HOST"),
-		DBPort:     getEnv("DB_PORT"),
-		DBUser:     getEnv("DB_USER"),
-		DBPassword: getEnv("DB_PASSWORD"),
-		DBName:     getEnv("DB_NAME"),
-		DBSSLMode:  getEnv("DB_SSLMODE"),
+		DBHost:     os.Getenv("DB_HOST"),
+		DBPort:     os.Getenv("DB_PORT"),
+		DBUser:     os.Getenv("DB_USER"),
+		DBPassword: os.Getenv("DB_PASSWORD"),
+		DBName:     os.Getenv("DB_NAME"),
+		DBSSLMode:  os.Getenv("DB_SSLMODE"),
 		ServerPort: getEnv("SERVER_PORT"),
 	}
 }
