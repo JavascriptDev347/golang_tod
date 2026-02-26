@@ -17,6 +17,14 @@ func NewUserController(service services.UserService) *UserController {
 	return &UserController{service: service}
 }
 
+// @Summary     Ro'yxatdan o'tish
+// @Tags        auth
+// @Accept      json
+// @Produce     json
+// @Param       request body dto.RegisterRequest true "Register ma'lumotlari"
+// @Success     201 {object} utils.Response
+// @Failure     400 {object} utils.Response
+// @Router      /auth/register [post]
 func (ctrl *UserController) Register(c *gin.Context) {
 	var req dto.RegisterRequest
 
@@ -34,6 +42,14 @@ func (ctrl *UserController) Register(c *gin.Context) {
 	utils.Success(c, http.StatusCreated, "Muvaffaqiyatli ro'yxatdan o'tdingiz", response)
 }
 
+// @Summary     Kirish
+// @Tags        auth
+// @Accept      json
+// @Produce     json
+// @Param       request body dto.LoginRequest true "Login ma'lumotlari"
+// @Success     200 {object} utils.Response
+// @Failure     401 {object} utils.Response
+// @Router      /auth/login [post]
 func (ctrl *UserController) Login(c *gin.Context) {
 	var req dto.LoginRequest
 

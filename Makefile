@@ -8,3 +8,6 @@ migrate-down:
 
 migrate-create:
 	migrate create -ext sql -dir db/migrations -seq $(name)
+
+swagger:
+	swag init -g cmd/main.go

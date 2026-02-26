@@ -6,6 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(r *gin.Engine, userController *controllers.UserController) {
+func SetupRoutes(r *gin.Engine,
+	userController *controllers.UserController,
+	categoryController *controllers.CategoryController,
+
+) {
 	UserRoutes(r, userController)
+	CategoryRoutes(r, categoryController)
 }

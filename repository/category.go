@@ -49,7 +49,7 @@ func (r *categoryRepository) FindAll(filter dto.CategoryFilter) ([]models.Catego
 	}
 
 	sortBy := "created_at"
-	if !allowedSortFields[filter.SortBy] {
+	if filter.SortBy != "" && !allowedSortFields[filter.SortBy] {
 		sortBy = filter.SortBy
 	}
 
