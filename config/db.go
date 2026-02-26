@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,15 +15,22 @@ var DB *gorm.DB
 func ConnectDB() {
 	cfg := AppConfig
 	// **DSN** (Data Source Name) — PostgreSQL ga ulanish uchun connection string
-	dsn := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
-		cfg.DBHost,
-		cfg.DBPort,
-		cfg.DBUser,
-		cfg.DBPassword,
-		cfg.DBName,
-		cfg.DBSSLMode,
-	)
+	var dsn string
+
+	// Render DATABASE_URL beradi
+	if dbURL := os.Getenv("DATABASE_URL"); dbURL != "" {
+		dsn = dbURL
+	} else {
+		dsn = fmt.Sprintf(
+			"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+			cfg.DBHost,
+			cfg.DBPort,
+			cfg.DBUser,
+			cfg.DBPassword,
+			cfg.DBName,
+			cfg.DBSSLMode,
+		)
+	}
 
 	//postgres.Open(dsn) — DSN ni PostgreSQL driveriga beradi. gorm.Open() — ulanishni ochadi va *gorm.DB qaytaradi.
 	//  logger.Info — har bir SQL query ni terminаlgа chiqaradi, development da qulay.
