@@ -1,6 +1,6 @@
 module to-do
 
-go 1.25.4
+go 1.22.0
 
 require (
 	github.com/cloudinary/cloudinary-go v1.7.0
