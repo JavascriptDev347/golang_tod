@@ -67,6 +67,11 @@ func ConnectDB() {
 }
 
 func runMigrations() {
+	// ENUM typelarni yaratish (mavjud bo'lsa o'tkazib yuboradi)
+	DB.Exec("DO $$ BEGIN CREATE TYPE user_role AS ENUM ('admin', 'user'); EXCEPTION WHEN duplicate_object THEN null; END $$;")
+	DB.Exec("DO $$ BEGIN CREATE TYPE todo_status AS ENUM ('pending', 'in_progress', 'completed'); EXCEPTION WHEN duplicate_object THEN null; END $$;")
+	DB.Exec("DO $$ BEGIN CREATE TYPE todo_priority AS ENUM ('low', 'medium', 'high'); EXCEPTION WHEN duplicate_object THEN null; END $$;")
+
 	err := DB.AutoMigrate(
 		&models.User{},
 		&models.Category{},
