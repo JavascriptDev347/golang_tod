@@ -39,14 +39,17 @@ func main() {
 	// 3. Repository
 	userRepo := repository.NewUserRepository(config.DB)
 	categoryRepo := repository.NewCategoryRepository(config.DB)
+	todoRepo := repository.NewTodoResository(config.DB)
 
 	// 4. Service
 	userService := services.NewUserService(userRepo)
 	categoryService := services.NewCategoryService(categoryRepo)
+	todoService := services.NewTodoService(todoRepo)
 
 	// 5. Controller
 	userController := controllers.NewUserController(userService)
 	categoryController := controllers.NewCategoryController(categoryService)
+	todoController := controllers.NewTodoController(todoService)
 
 	// 6. Gin router
 	r := gin.Default()
@@ -67,7 +70,7 @@ func main() {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// 7. Routelarni ulash
-	routes.SetupRoutes(r, userController, categoryController)
+	routes.SetupRoutes(r, userController, categoryController, todoController)
 
 	// 8. Serverni ishga tushur
 	port := config.AppConfig.ServerPort
