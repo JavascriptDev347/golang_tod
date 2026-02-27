@@ -12,7 +12,7 @@ import (
 
 	_ "to-do/docs"
 
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gin-contrib/cors"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
