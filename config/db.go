@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"log"
 	"os"
-
+"todo/models
+	
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	
 )
 
 var DB *gorm.DB
