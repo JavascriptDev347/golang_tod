@@ -59,4 +59,19 @@ func ConnectDB() {
 
 	DB = db
 	log.Println("✅ Database ga muvaffaqiyatli ulandi!")
+
+	// Auto migrate
+	runMigrations()
+}
+
+func runMigrations() {
+	err := DB.AutoMigrate(
+		&models.User{},
+		&models.Category{},
+		&models.Todo{},
+	)
+	if err != nil {
+		log.Fatalf("Migration xatolik: %v", err)
+	}
+	log.Println("✅ Migration muvaffaqiyatli bajarildi!")
 }
