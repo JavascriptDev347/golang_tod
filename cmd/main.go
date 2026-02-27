@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 	"to-do/config"
 	"to-do/controllers"
 	"to-do/repository"
@@ -11,6 +12,7 @@ import (
 
 	_ "to-do/docs"
 
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
@@ -50,6 +52,16 @@ func main() {
 	r := gin.Default()
 	// proxyga ishonma
 	r.SetTrustedProxies(nil)
+
+	// CORS
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: false,
+		MaxAge:           12 * time.Hour,
+	}))
 
 	// swagger ui
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
