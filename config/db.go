@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-"todo/models
+"todo/models"
 	
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
