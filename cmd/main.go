@@ -22,7 +22,7 @@ import (
 // @title           Todo API
 // @version         1.0
 // @description     Todo loyiha API documentation
-// @host            https://golang-tod-1.onrender.com
+// @host            golang-tod-1.onrender.com
 // @BasePath        /api
 // @securityDefinitions.apikey BearerAuth
 // @in header

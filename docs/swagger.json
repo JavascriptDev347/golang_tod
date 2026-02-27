@@ -6,7 +6,7 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "https://golang-tod-1.onrender.com",
+    "host": "golang-tod-1.onrender.com",
     "basePath": "/api",
     "paths": {
         "/auth/login": {
