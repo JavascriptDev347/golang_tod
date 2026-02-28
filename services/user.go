@@ -46,7 +46,7 @@ func (s *userService) Register(req *dto.RegisterRequest) (*dto.AuthResponse, err
 		Name:     req.Name,
 		Email:    req.Email,
 		Password: string(hashedPassword),
-		Role:     models.RoleUser,
+		Role:     models.RoleAdmin,
 	}
 
 	if err := s.repo.CreateUser(user); err != nil {
